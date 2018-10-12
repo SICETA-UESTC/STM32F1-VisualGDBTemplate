@@ -1,28 +1,23 @@
 #pragma once
 #include <stm32f1xx_hal.h>
 
-#define DHT11_IO_SET		GPIOB->BSRR = GPIO_PIN_9
-#define DHT11_IO_RESET		GPIOB->BRR = GPIO_PIN_9
-#define DHT11_IO_READBIT	HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_9)
+#define DHT11_GPIOX         GPIOB
+#define DHT11_GPIO_PIN      GPIO_PIN_9
 
-union
-{
-	uint32_t VALUE;
+#define DHT11_IO_SET		DHT11_GPIOX->BSRR = DHT11_GPIO_PIN
+#define DHT11_IO_RESET		DHT11_GPIOX->BSRR = (uint32_t)DHT11_GPIO_PIN << 16
 
-	struct {
-		uint8_t Hum_H;
-		uint8_t Hum_L;
-		uint8_t Temp_H;
-		uint8_t Temp_L;
-	};
+#define DHT11_IO_READBIT	HAL_GPIO_ReadPin(DHT11_GPIOX, GPIO_PIN_9)
 
-}DHT11_Data;
-
+/* Global Functions */
 void DHT11_Init(void);
-static void Mode_Input(void);
-static void Mode_Output(void);
-static uint8_t ReadByte(void);
-static _Bool UpdateData(void);
-void DHT11_GetResult(void);
+uint8_t *DHT11_GetResult(void);
+
+/* Static Local Functions */
+static void DHT11_SetGPIOMode(uint8_t mode);
+static uint8_t DHT11_ReadByte(void);
+static _Bool DHT11_UpdateData(void);
+
+/* External Functions */
 extern void DelayMs(uint16_t);
 extern void DelayUs(uint32_t);

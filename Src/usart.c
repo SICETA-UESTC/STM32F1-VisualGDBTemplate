@@ -7,44 +7,44 @@ DMA_HandleTypeDef hdma_usart1_tx;
 
 UART_RxBufferTypeDef uart1_rx_buffer;
 
-/* ÷ÿ∂®œÚstd ‰≥ˆ¡˜µΩ USART1 */
+/* ÈáçÂÆöÂêëstdËæìÂá∫ÊµÅÂà∞ USART1 */
 size_t _write(int file, const uint8_t *pBuffer, size_t len)
 {
-	HAL_UART_Transmit(&huart1, pBuffer, len, 0xFF);
-	return len;
+    HAL_UART_Transmit(&huart1, pBuffer, len, 0xFF);
+    return len;
 }
 
-/* USART1 ≥ı ºªØ */
+/* USART1 ÂàùÂßãÂåñ */
 void USART1_Init(void)
 {
-	huart1.Instance = USART1;                           //USART1
-	huart1.Init.BaudRate = 115200;                      //≤®Ãÿ¬  115200
-	huart1.Init.WordLength = UART_WORDLENGTH_8B;        // ˝æ›Œª 8
-	huart1.Init.StopBits = UART_STOPBITS_1;             //Õ£÷πŒª 1
-	huart1.Init.Parity = UART_PARITY_NONE;              //Œﬁ–£—ÈŒª
-	huart1.Init.Mode = UART_MODE_TX_RX;                 // ’∑¢ƒ£ Ω
-	huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;        //Œﬁ”≤º˛¡˜øÿ÷∆
-	huart1.Init.OverSampling = UART_OVERSAMPLING_16;    //π˝≤…—˘ 16±∂
+    huart1.Instance = USART1;                           //USART1
+    huart1.Init.BaudRate = 115200;                      //Ê≥¢ÁâπÁéá 115200
+    huart1.Init.WordLength = UART_WORDLENGTH_8B;        //Êï∞ÊçÆ‰Ωç 8
+    huart1.Init.StopBits = UART_STOPBITS_1;             //ÂÅúÊ≠¢‰Ωç 1
+    huart1.Init.Parity = UART_PARITY_NONE;              //Êó†Ê†°È™å‰Ωç
+    huart1.Init.Mode = UART_MODE_TX_RX;                 //Êî∂ÂèëÊ®°Âºè
+    huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;        //Êó†Á°¨‰ª∂ÊµÅÊéßÂà∂
+    huart1.Init.OverSampling = UART_OVERSAMPLING_16;    //ËøáÈááÊ†∑ 16ÂÄç
 
-	if (HAL_UART_Init(&huart1) != HAL_OK) 
-	{
-		_Error_Handler(__FILE__, __LINE__);
-	}
-    //ø™ ºDMAΩ” ’ ˝æ›
-	HAL_UART_Receive_DMA(&huart1, &uart1_rx_buffer.Data, UART_RX_BUFFER_SIZE);
+    if (HAL_UART_Init(&huart1) != HAL_OK)
+    {
+        _Error_Handler(__FILE__, __LINE__);
+    }
+    //ÂºÄÂßãDMAÊé•Êî∂Êï∞ÊçÆ
+    HAL_UART_Receive_DMA(&huart1, &uart1_rx_buffer.Data, UART_RX_BUFFER_SIZE);
 }
 
-/* USART3 ≥ı ºªØ */
+/* USART3 ÂàùÂßãÂåñ */
 void USART3_Init(void)
 {
     huart3.Instance = USART3;                           //USART1
-    huart3.Init.BaudRate = 115200;                      //≤®Ãÿ¬  115200
-    huart3.Init.WordLength = UART_WORDLENGTH_8B;        // ˝æ›Œª 8
-    huart3.Init.StopBits = UART_STOPBITS_1;             //Õ£÷πŒª 1
-    huart3.Init.Parity = UART_PARITY_NONE;              //Œﬁ–£—ÈŒª
-    huart3.Init.Mode = UART_MODE_TX_RX;                 // ’∑¢ƒ£ Ω
-    huart3.Init.HwFlowCtl = UART_HWCONTROL_NONE;        //Œﬁ”≤º˛¡˜øÿ÷∆
-    huart3.Init.OverSampling = UART_OVERSAMPLING_16;    //π˝≤…—˘ 16±∂
+    huart3.Init.BaudRate = 115200;                      //Ê≥¢ÁâπÁéá 115200
+    huart3.Init.WordLength = UART_WORDLENGTH_8B;        //Êï∞ÊçÆ‰Ωç 8
+    huart3.Init.StopBits = UART_STOPBITS_1;             //ÂÅúÊ≠¢‰Ωç 1
+    huart3.Init.Parity = UART_PARITY_NONE;              //Êó†Ê†°È™å‰Ωç
+    huart3.Init.Mode = UART_MODE_TX_RX;                 //Êî∂ÂèëÊ®°Âºè
+    huart3.Init.HwFlowCtl = UART_HWCONTROL_NONE;        //Êó†Á°¨‰ª∂ÊµÅÊéßÂà∂
+    huart3.Init.OverSampling = UART_OVERSAMPLING_16;    //ËøáÈááÊ†∑ 16ÂÄç
 
     if (HAL_UART_Init(&huart3) != HAL_OK)
     {
@@ -56,26 +56,26 @@ void HAL_UART_MspInit(UART_HandleTypeDef* husart)
 {
     GPIO_InitTypeDef GPIO_InitStruct;
 
-	if (husart->Instance == USART1)
-	{
-		/* USART1  ±÷”∆Ù∂Ø */
-		__HAL_RCC_USART1_CLK_ENABLE();
+    if (husart->Instance == USART1)
+    {
+        /* USART1 Êó∂ÈíüÂêØÂä® */
+        __HAL_RCC_USART1_CLK_ENABLE();
 
-		/**USART1 GPIO ”≥…‰
-		PA9     ------> USART1_TX
-		PA10     ------> USART1_RX
-		*/
-		GPIO_InitStruct.Pin = GPIO_PIN_9;
-		GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-		HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+        /**USART1 GPIO Êò†Â∞Ñ
+        PA9     ------> USART1_TX
+        PA10     ------> USART1_RX
+        */
+        GPIO_InitStruct.Pin = GPIO_PIN_9;
+        GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+        GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+        HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-		GPIO_InitStruct.Pin = GPIO_PIN_10;
-		GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-		GPIO_InitStruct.Pull = GPIO_NOPULL;
-		HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+        GPIO_InitStruct.Pin = GPIO_PIN_10;
+        GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+        GPIO_InitStruct.Pull = GPIO_NOPULL;
+        HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-        /* USART1 RX DMA ≥ı ºªØ */
+        /* USART1 RX DMA ÂàùÂßãÂåñ */
         hdma_usart1_rx.Instance = DMA1_Channel5;
         hdma_usart1_rx.Init.Direction = DMA_PERIPH_TO_MEMORY;
         hdma_usart1_rx.Init.PeriphInc = DMA_PINC_DISABLE;
@@ -91,7 +91,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* husart)
 
         __HAL_LINKDMA(husart, hdmarx, hdma_usart1_rx);
 
-        /* USART1 TX DMA ≥ı ºªØ */
+        /* USART1 TX DMA ÂàùÂßãÂåñ */
         hdma_usart1_tx.Instance = DMA1_Channel4;
         hdma_usart1_tx.Init.Direction = DMA_MEMORY_TO_PERIPH;
         hdma_usart1_tx.Init.PeriphInc = DMA_PINC_DISABLE;
@@ -107,16 +107,16 @@ void HAL_UART_MspInit(UART_HandleTypeDef* husart)
 
         __HAL_LINKDMA(husart, hdmatx, hdma_usart1_tx);
 
-        /* USART1 ÷–∂œ ≥ı ºªØ */
-		HAL_NVIC_SetPriority(USART1_IRQn, 0, 2);
-		HAL_NVIC_EnableIRQ(USART1_IRQn);
-	}
+        /* USART1 ‰∏≠Êñ≠ ÂàùÂßãÂåñ */
+        HAL_NVIC_SetPriority(USART1_IRQn, 0, 2);
+        HAL_NVIC_EnableIRQ(USART1_IRQn);
+    }
     else if (husart->Instance == USART3)
     {
-        /* USART3  ±÷”∆Ù∂Ø */
+        /* USART3 Êó∂ÈíüÂêØÂä® */
         __HAL_RCC_USART3_CLK_ENABLE();
 
-        /**USART3 GPIO ”≥…‰
+        /**USART3 GPIO Êò†Â∞Ñ
         PB10     ------> USART3_TX
         PB11     ------> USART3_RX
         */
@@ -134,26 +134,26 @@ void HAL_UART_MspInit(UART_HandleTypeDef* husart)
 
 void HAL_UART_MspDeInit(UART_HandleTypeDef* husart)
 {
-	if (husart->Instance == USART1)
-	{
-        /* USART1  ±÷”πÿ±’ */
+    if (husart->Instance == USART1)
+    {
+        /* USART1 Êó∂ÈíüÂÖ≥Èó≠ */
         __HAL_RCC_USART1_CLK_DISABLE();
-        /**USART1 GPIO πÿ±’
+        /**USART1 GPIO ÂÖ≥Èó≠
         PA9     ------> USART1_TX
         PA10     ------> USART1_RX
         */
         HAL_GPIO_DeInit(GPIOA, GPIO_PIN_9 | GPIO_PIN_10);
-        /* USART1 DMA πÿ±’ */
+        /* USART1 DMA ÂÖ≥Èó≠ */
         HAL_DMA_DeInit(husart->hdmarx);
         HAL_DMA_DeInit(husart->hdmatx);
-        /* USART1 ÷–∂œ πÿ±’ */
+        /* USART1 ‰∏≠Êñ≠ ÂÖ≥Èó≠ */
         HAL_NVIC_DisableIRQ(USART1_IRQn);
-	}
+    }
     else if (husart->Instance == USART3)
     {
-        /* USART3  ±÷”πÿ±’ */
+        /* USART3 Êó∂ÈíüÂÖ≥Èó≠ */
         __HAL_RCC_USART3_CLK_DISABLE();
-        /**USART3 GPIO πÿ±’
+        /**USART3 GPIO ÂÖ≥Èó≠
         PB10     ------> USART3_TX
         PB11     ------> USART3_RX
         */
@@ -161,34 +161,34 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* husart)
     }
 }
 
-/* USART1 ÷–∂œ¥¶¿Ì */
+/* USART1 ‰∏≠Êñ≠Â§ÑÁêÜ */
 void USART1_IRQHandler(void)
 {
-	if (__HAL_UART_GET_FLAG(&huart1, UART_FLAG_IDLE))
-	{
-		__HAL_UART_CLEAR_IDLEFLAG(&huart1);
+    if (__HAL_UART_GET_FLAG(&huart1, UART_FLAG_IDLE))
+    {
+        __HAL_UART_CLEAR_IDLEFLAG(&huart1);
 
-		__HAL_DMA_DISABLE(huart1.hdmarx);
-		uart1_rx_buffer.Count = UART_RX_BUFFER_SIZE - hdma_usart1_rx.Instance->CNDTR;
-		hdma_usart1_rx.Instance->CNDTR = UART_RX_BUFFER_SIZE;
-		__HAL_DMA_ENABLE(huart1.hdmarx);
+        __HAL_DMA_DISABLE(huart1.hdmarx);
+        uart1_rx_buffer.Count = UART_RX_BUFFER_SIZE - hdma_usart1_rx.Instance->CNDTR;
+        hdma_usart1_rx.Instance->CNDTR = UART_RX_BUFFER_SIZE;
+        __HAL_DMA_ENABLE(huart1.hdmarx);
 
-		uart1_rx_buffer.IsComplete = 1;
-		uart1_rx_buffer.Data[uart1_rx_buffer.Count] = '\0';
-	}
-	HAL_UART_IRQHandler(&huart1);
+        uart1_rx_buffer.IsComplete = 1;
+        uart1_rx_buffer.Data[uart1_rx_buffer.Count] = '\0';
+    }
+    HAL_UART_IRQHandler(&huart1);
 }
 
-/* USART1 TX DMA ÷–∂œ¥¶¿Ì */
+/* USART1 TX DMA ‰∏≠Êñ≠Â§ÑÁêÜ */
 void DMA1_Channel4_IRQHandler(void)
 {
     HAL_DMA_IRQHandler(&hdma_usart1_tx);
 }
 
-/* USART1 RX DMA ÷–∂œ¥¶¿Ì */
+/* USART1 RX DMA ‰∏≠Êñ≠Â§ÑÁêÜ */
 void DMA1_Channel5_IRQHandler(void)
 {
-	HAL_DMA_IRQHandler(&hdma_usart1_rx);
+    HAL_DMA_IRQHandler(&hdma_usart1_rx);
 }
 
 
